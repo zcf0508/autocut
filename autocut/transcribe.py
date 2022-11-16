@@ -16,6 +16,7 @@ class Transcribe:
         self.args = args
         self.sampling_rate = 16000
         self.whisper_model = None
+        self.quantized_model = None
         self.vad_model = None
         self.detect_speech = None
 
@@ -68,14 +69,24 @@ class Transcribe:
     def _transcribe(self, audio, speech_timestamps):
         tic = time.time()
         if self.whisper_model is None:
-            self.whisper_model = whisper.load_model(self.args.whisper_model, self.args.device)
-
+            self.whisper_model = whisper.load_model(
+                self.args.whisper_model, self.args.device
+            )
+            self.quantized_model = torch.quantization.quantize_dynamic(
+                self.whisper_model, {torch.nn.Linear}, dtype=torch.qint8
+            )
         res = []
         # TODO, a better way is merging these segments into a single one, so whisper can get more context
+        print(self.args.device == 'cpu')
         for seg in speech_timestamps:
-            r = self.whisper_model.transcribe(
-                audio[int(seg['start']):int(seg['end'])],
-                task='transcribe', language=self.args.lang, initial_prompt=self.args.prompt)
+            r = whisper.transcribe(
+                self.quantized_model if self.args.device == 'cpu'
+                        else self.whisper_model,
+                audio = audio[int(seg['start']):int(seg['end'])],
+                task='transcribe', 
+                language=self.args.lang, 
+                initial_prompt=self.args.prompt
+            )
             r['origin_timestamp'] = seg
             res.append(r)
         logging.info(f'Done transcription in {time.time() - tic:.1f} sec')
@@ -115,7 +126,7 @@ class Transcribe:
 
         md = utils.MD(md_fn, self.args.encoding)
         md.clear()
-        md.add_done_edditing(False)
+        md.add_done_editing(False)
         md.add_video(os.path.basename(video_fn))
         md.add(f'\nTexts generated from [{os.path.basename(srt_fn)}]({os.path.basename(srt_fn)}).'
                'Mark the sentences to keep for autocut.\n'
