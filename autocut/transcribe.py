@@ -63,7 +63,10 @@ class Transcribe:
             # torch load limit https://github.com/pytorch/vision/issues/4156
             torch.hub._validate_not_a_forked_repo = lambda a, b, c: True
             self.vad_model, funcs = torch.hub.load(
-                repo_or_dir="snakers4/silero-vad", model="silero_vad", trust_repo=True
+                repo_or_dir=os.path.join(os.getcwd(), "snakers4_silero-vad_master"), 
+                source="local",
+                model="silero_vad", 
+                trust_repo=True
             )
 
             self.detect_speech = funcs[0]

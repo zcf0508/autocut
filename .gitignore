@@ -128,3 +128,6 @@ dmypy.json
 # Pyre type checker
 .pyre/
 log/
+
+# vad_model
+snakers4_silero-vad_master

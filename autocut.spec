@@ -11,8 +11,10 @@ datas += copy_metadata('packaging')
 datas += copy_metadata('filelock')
 datas += copy_metadata('numpy')
 datas += copy_metadata('tokenizers')
+datas += [(path.join(sys.executable, '../../Lib/site-packages','torchaudio'), 'torchaudio')]
 datas += [(path.join(sys.executable, '../../Lib/site-packages','whisper'), 'whisper')]
 datas += [(path.join(sys.executable, '../../Lib/site-packages','opencc'), 'opencc')]
+datas += [('./snakers4_silero-vad_master', './snakers4_silero-vad_master')]
 
 block_cipher = None
 
