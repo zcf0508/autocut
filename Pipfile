@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+srt = "*"
+moviepy = "*"
+opencc-python-reimplemented = "*"
+torchaudio = "*"
+parameterized = "*"
+whisper = {git = "https://github.com/openai/whisper.git"}
+ffmpeg-python = "*"
+tqdm = "*"
+
+[dev-packages]
+black = "*"
+pytest = "*"
+pyinstaller = "*"
+
+[requires]
+python_version = "3.9"
