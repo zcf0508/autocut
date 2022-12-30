@@ -63,18 +63,16 @@ jobs:
         .venv\Scripts\activate
         pip install -r requirements.txt
         pyinstaller autocut.spec -y
-    - name: Build with pyinstaller for Other${{matrix.TARGET}}
+    - name: Build with pyinstaller for Other-${{matrix.TARGET}}
       if: runner.os != 'windows'
       run: |
         source .venv/bin/activate
         pip install -r requirements.txt
         pyinstaller autocut.spec -y
-    - name: Archive Release
-      uses: thedoctor0/zip-release@main
+    - name: Zip Files
+      uses: montudor/action-zip@v1
       with:
-        type: zip
-        filename: autocut_${{matrix.TARGET}}.zip
-        directory: ./dist
+        args: zip -q -r ./dist/autocut_${{matrix.TARGET}}.zip ./dist
     - name: Load Release URL File from release job
       uses: actions/download-artifact@v1
       with:
