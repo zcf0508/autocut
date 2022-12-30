@@ -14,28 +14,23 @@ datas += copy_metadata('filelock')
 datas += copy_metadata('numpy')
 datas += copy_metadata('tokenizers')
 datas += [(path.join(
-    sys.executable, 
-    '../../Lib/site-packages' if plat == 'windows' else '../../lib/python3.9/site-packages',
+    './.venv/Lib/site-packages' if plat == 'windows' else './.venv/lib/python3.9/site-packages',
     'moviepy'
 ), 'moviepy')]
 datas += [(path.join(
-    sys.executable, 
-    '../../Lib/site-packages' if plat == 'windows' else '../../lib/python3.9/site-packages',
+    './.venv/Lib/site-packages' if plat == 'windows' else './.venv/lib/python3.9/site-packages',
     'imageio_ffmpeg'
 ), 'imageio_ffmpeg')]
 datas += [(path.join(
-    sys.executable, 
-    '../../Lib/site-packages' if plat == 'windows' else '../../lib/python3.9/site-packages',
+    './.venv/Lib/site-packages' if plat == 'windows' else './.venv/lib/python3.9/site-packages',
     'torchaudio'
 ), 'torchaudio')]
 datas += [(path.join(
-    sys.executable, 
-    '../../Lib/site-packages' if plat == 'windows' else '../../lib/python3.9/site-packages',
+    './.venv/Lib/site-packages' if plat == 'windows' else './.venv/lib/python3.9/site-packages',
     'whisper'
 ), 'whisper')]
 datas += [(path.join(
-    sys.executable, 
-    '../../Lib/site-packages' if plat == 'windows' else '../../lib/python3.9/site-packages',
+    './.venv/Lib/site-packages' if plat == 'windows' else './.venv/lib/python3.9/site-packages',
     'opencc'
 ), 'opencc')]
 datas += [('./snakers4_silero-vad_master', './snakers4_silero-vad_master')]

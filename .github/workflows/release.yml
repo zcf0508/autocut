@@ -54,18 +54,21 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pipenv
+        pip install virtualenv
+        python -m virtualenv ./.venv
     - name: Build with pyinstaller for Windows
       if: runner.os == 'windows'
       shell: cmd
-      run: >
-        pipenv install --skip-lock &&
-        pipenv run --verbose pyinstaller autocut.spec
-    - name: Build with pyinstaller for Other
+      run: |
+        .venv\Scripts\activate
+        pip install -r requirements.txt
+        pyinstaller autocut.spec -y
+    - name: Build with pyinstaller for Other${{matrix.TARGET}}
       if: runner.os != 'windows'
-      run: >
-        pipenv install --skip-lock &&
-        pipenv run --verbose pyinstaller autocut.spec
+      run: |
+        source .venv/bin/activate
+        pip install -r requirements.txt
+        pyinstaller autocut.spec -y
     - name: Archive Release
       uses: thedoctor0/zip-release@main
       with:
