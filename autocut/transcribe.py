@@ -67,7 +67,8 @@ class Transcribe:
                 repo_or_dir=os.path.join(os.path.dirname(sys.executable), "snakers4_silero-vad_master"), 
                 source="local",
                 model="silero_vad", 
-                trust_repo=True
+                trust_repo=True,
+                silero_vad_source="local",
             )
 
             self.detect_speech = funcs[0]
