@@ -2,8 +2,8 @@ import argparse
 import logging
 import os
 
+from whisper.tokenizer import LANGUAGES
 from . import utils
-
 
 def main():
     parser = argparse.ArgumentParser(
@@ -50,7 +50,7 @@ def main():
         "--lang",
         type=str,
         default="zh",
-        choices=["zh", "en"],
+        choices=LANGUAGES.keys(),
         help="The output language of transcription",
     )
     parser.add_argument(
@@ -60,7 +60,7 @@ def main():
         "--whisper-model",
         type=str,
         default="small",
-        choices=["tiny", "base", "small", "medium", "large", "large-v2"],
+        choices=["tiny", "base", "small", "medium", "large"],
         help="The whisper model used to transcribe.",
     )
     parser.add_argument(
