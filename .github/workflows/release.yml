@@ -71,7 +71,7 @@ jobs:
       if: runner.os != 'windows'
       shell: bash
       run: |
-        bash buils.sh
+        bash ./build.sh
     - name: Zip Files
       uses: vimtor/action-zip@v1
       with:
