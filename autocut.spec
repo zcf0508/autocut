@@ -34,6 +34,8 @@ datas += [(path.join(
     'opencc'
 ), 'opencc')]
 datas += [('./snakers4_silero-vad_master', './snakers4_silero-vad_master')]
+if not plat == 'windows':
+    datas += [('./build.sh', './')]
 
 block_cipher = None
 

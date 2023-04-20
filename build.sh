@@ -1,8 +1,6 @@
 # run this script after pyinstaller
 # see https://github.com/pyinstaller/pyinstaller/issues/7582#issuecomment-1515434457
 
-cd dist/autocut
-
 rm -f libtorch*
 ln -s torch/lib/libtorch.dylib .
 ln -s torch/lib/libtorch_cpu.dylib .
