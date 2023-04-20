@@ -1,6 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import copy_metadata
-import sys
 from os import path
 import platform
 plat = platform.system().lower()
@@ -13,6 +12,7 @@ datas += copy_metadata('packaging')
 datas += copy_metadata('filelock')
 datas += copy_metadata('numpy')
 datas += copy_metadata('tokenizers')
+datas += copy_metadata('torch')
 datas += [(path.join(
     './.venv/Lib/site-packages' if plat == 'windows' else './.venv/lib/python3.9/site-packages',
     'moviepy'

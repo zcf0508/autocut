@@ -67,6 +67,11 @@ jobs:
         source .venv/bin/activate
         pip install -r requirements.txt
         pyinstaller autocut.spec -y
+    - name: Fix error on mac
+      if: runner.os != 'windows'
+      shell: bash
+      run: |
+        bash buils.sh
     - name: Zip Files
       uses: vimtor/action-zip@v1
       with:
