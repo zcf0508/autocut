@@ -40,6 +40,10 @@ jobs:
             TARGET: macos
             OUT_FILE_NAME: autocut_macos.zip
             ASSET_MIME: application/zip
+          - os: ubuntu-latest
+            TARGET: linux
+            OUT_FILE_NAME: autocut_linux.zip
+            ASSET_MIME: application/zip
           - os: windows-latest
             TARGET: windows
             OUT_FILE_NAME: autocut_windows.zip

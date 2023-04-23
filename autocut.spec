@@ -1,10 +1,11 @@
 # -*- mode: python ; coding: utf-8 -*-
-from PyInstaller.utils.hooks import copy_metadata
+from PyInstaller.utils.hooks import copy_metadata, collect_data_files
 from os import path
 import platform
 plat = platform.system().lower()
 
 datas = []
+datas += collect_data_files('torch')
 datas += copy_metadata('tqdm')
 datas += copy_metadata('regex')
 datas += copy_metadata('requests')
@@ -13,6 +14,9 @@ datas += copy_metadata('filelock')
 datas += copy_metadata('numpy')
 datas += copy_metadata('tokenizers')
 datas += copy_metadata('torch')
+
+datas += collect_data_files('transformers', include_py_files=True)
+
 datas += [(path.join(
     './.venv/Lib/site-packages' if plat == 'windows' else './.venv/lib/python3.9/site-packages',
     'moviepy'
