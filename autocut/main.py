@@ -120,7 +120,7 @@ def main():
     elif args.s:
         utils.compact_rst(args.inputs[0], args.encoding)
     else:
-        logging.warn("No action, use -c, -t or -d")
+        logging.warning("No action, use -c, -t or -d")
 
 
 if __name__ == "__main__":
